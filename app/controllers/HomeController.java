@@ -1,8 +1,13 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import java.util.Calendar;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import play.libs.Json;
 import play.mvc.*;
+
 
 class AppSummary {
     private String content;
@@ -34,6 +39,15 @@ public class HomeController extends Controller {
 
     public Result appSummary() {
         JsonNode jsonNode = Json.toJson(new AppSummary("Java Play React Seed", "20190604"));
+        return ok(jsonNode).as("application/json");
+    }
+
+    public Result date() {
+        String pattern = "MM/dd/yyyy HH:mm:ss";
+        DateFormat df = new SimpleDateFormat(pattern);
+        Date today = Calendar.getInstance().getTime();
+        String todayAsString = df.format(today);
+        JsonNode jsonNode = Json.toJson(new AppSummary("Java Play React Seed", todayAsString));
         return ok(jsonNode).as("application/json");
     }
 }
