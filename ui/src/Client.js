@@ -8,6 +8,15 @@ function getSummary(cb) {
     .then(cb);
 }
 
+function getDate(cb) {
+  return fetch('/api/date', {
+    accept: "application/json"
+  })
+    .then(checkStatus)
+    .then(parseJSON)
+    .then(cb);
+}
+
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
@@ -23,5 +32,5 @@ function parseJSON(response) {
   return response.json();
 }
 
-const Client = { getSummary };
+const Client = { getSummary, getDate};
 export default Client;
