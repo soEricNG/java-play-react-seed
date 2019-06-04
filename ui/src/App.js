@@ -13,7 +13,7 @@ import Client from "./Client";
 import './App.css';
 
 const Tech = ({ match }) => {
-  return <div>Current Route: {match.params.tech}</div>
+  return <div>Current Route: {match.params.technology}</div>
 };
 
 
@@ -26,7 +26,8 @@ class App extends Component {
   async componentDidMount() {
     Client.getSummary(summary => {
       this.setState({
-        title: summary.content
+        title: summary.content,
+        date: summary.date
       });
     });
   }
@@ -35,7 +36,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <h1>Welcome to {this.state.title}!</h1>
+          <h1>Welcome to {this.state.title} on {this.state.date}!</h1>
           <nav>
             <Link to="java" >
               <img width="400" height="400" src={javaLogo} alt="Java Logo" />
@@ -47,7 +48,7 @@ class App extends Component {
               <img width="400" height="400" src={reactLogo} className="App-logo" alt="React Logo"/>
             </Link>
           </nav>
-          <Route path="/:tech" component={Tech} />
+          <Route path="/:technology" component={Tech} />
           <div>
             <h2>Check out the project on GitHub for more information</h2>
             <h3>
