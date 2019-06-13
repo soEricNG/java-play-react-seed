@@ -7,6 +7,7 @@ import reactLogo from './images/react.svg';
 import playLogo from './images/play.svg';
 import javaLogo from './images/java.webp';
 import Client from "./Client";
+import Game from './Game';
 
 import './App.css';
 
@@ -27,11 +28,18 @@ class App extends Component {
             });
         });
 
-        Client.getDate(summary => {
-            this.setState({
-                date: summary.date,
-            });
-        });
+        this.timerID = setInterval(
+            () => Client.getDate(summary => {
+                this.setState({
+                    date: summary.date,
+                });
+            }),
+            1000
+        );
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timerID);
     }
 
     render() {
@@ -39,9 +47,9 @@ class App extends Component {
                 <div className="App">
                     <h1>Welcome to {this.state.title} on {this.state.date}!</h1>
                     <nav>
-                        <Link to="java">
+                        <a href="java">
                             <img width="400" height="400" src={javaLogo} alt="Java Logo"/>
-                        </Link>
+                        </a>
                         <Link to="play">
                             <img width="400" height="400" src={playLogo} alt="Play Framework Logo"/>
                         </Link>
@@ -49,7 +57,8 @@ class App extends Component {
                             <img width="400" height="400" src={reactLogo} className="App-logo" alt="React Logo"/>
                         </Link>
                     </nav>
-                    <Route path="/:technology" component={Tech}/>
+                    {/*<Route path="/java" component={Game}/>*/}
+                    {/*<Route path="/:technology" component={Tech} />*/}
                     <div>
                         <h2>Check out the project on GitHub for more information</h2>
                         <h3>

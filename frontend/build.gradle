@@ -1,0 +1,43 @@
+buildscript {
+  repositories {
+    mavenLocal()
+    mavenCentral()
+  }
+  dependencies {
+    classpath "io.ebean:ebean-gradle-plugin:11.37.1"
+  }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'io.ebean'
+apply plugin: 'idea'
+
+apply from: '../gradle/scripts/dependency.gradle'
+apply from: '../gradle/scripts/play.gradle'
+// Change this to listen on a different port
+project.ext.httpPort = 9000
+project.ext.playBinaryBaseName = "frontend"
+
+dependencies {
+  play externalDependency.lombok
+  play externalDependency."play-ebean"
+  play externalDependency."persistence-api"
+  play externalDependency."h2"
+  play(externalDependency.'jackson-databind') { force = true }
+  play(externalDependency.'jackson-core') { force = true }
+  play(externalDependency.'jackson-datatype-jdk8') { force = true }
+  play(externalDependency.'jackson-datatype-jsr310') { force = true }
+  play(externalDependency.'jackson-annotations') { force = true }
+  play("io.ebean:ebean-annotation:4.7")
+  play("io.ebean:persistence-api:2.2.1")
+  play("io.ebean:ebean-querybean:11.37.1")
+  play("io.ebean:querybean-generator:11.37.1")
+  play("io.ebean:ebean-annotation:4.7")
+  play("io.ebean:ebean-querybean:11.37.1")
+  play("io.ebean:ebean:11.37.1")
+}
+
+ebean {
+  debugLevel       = 1 //1 - 9
+}
