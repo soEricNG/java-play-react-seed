@@ -1,0 +1,10 @@
+def modules = ["frontend"]
+
+
+modules.each { module ->
+  if (!file("${rootDir}/${module}").directory) {
+    throw new GradleException(
+        "Module '$module' specified in the settings.gradle file must be a valid directory in the root project.")
+  }
+  include "${module}"
+}

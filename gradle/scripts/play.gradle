@@ -1,0 +1,46 @@
+apply plugin: 'play'
+
+def playVersion = '2.6.19'
+def scalaVersion = System.getProperty("scala.binary.version", /* default = */ "2.11")
+
+tasks.withType(PlayRun) {
+  httpPort = project.ext.httpPort
+}
+
+model {
+  components {
+    play {
+      platform play: playVersion, scala: scalaVersion, java: '1.8'
+      injectedRoutesGenerator = true
+
+      sources {
+        twirlTemplates {
+          defaultImports = TwirlImports.JAVA
+        }
+      }
+
+      binaries.all {
+        tasks.withType(PlatformScalaCompile) {
+          scalaCompileOptions.forkOptions.jvmArgs = ['-Xms1G', '-Xmx1G', '-Xss2M']
+        }
+      }
+    }
+  }
+
+  distributions {
+    playBinary {
+      baseName = project.ext.playBinaryBaseName
+    }
+  }
+}
+
+dependencies {
+  play "com.typesafe.play:play-guice_$scalaVersion:$playVersion"
+  play "com.typesafe.play:play-logback_$scalaVersion:$playVersion"
+  play "com.typesafe.play:play-jdbc-api_$scalaVersion:$playVersion"
+  play "com.typesafe.play:play-java-jdbc_$scalaVersion:$playVersion"
+  play "org.postgresql:postgresql:42.1.1"
+  play "com.typesafe.play:filters-helpers_$scalaVersion:$playVersion"
+
+  playTest externalDependency.play_test
+}

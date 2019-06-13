@@ -7,6 +7,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import play.libs.Json;
 import play.mvc.*;
+import javax.inject.*;
+import models.Product;
+
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 
 class AppSummary {
@@ -50,4 +56,16 @@ public class HomeController extends Controller {
         JsonNode jsonNode = Json.toJson(new AppSummary("Java Play React Seed", todayAsString));
         return ok(jsonNode).as("application/json");
     }
+
+//    public Result save() {
+//        Product product = new Product();
+//        product.description = "Hello";
+//        product.ean = 123L;
+//        product.id = 456L;
+//        product.name = "World";
+////        product.save();
+//        JsonNode jsonNode = Json.toJson(product);
+//        return ok(jsonNode).as("application/json");
+//
+//    }
 }

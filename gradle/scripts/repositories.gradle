@@ -1,0 +1,22 @@
+repositories {
+  mavenLocal()
+  mavenCentral()
+  jcenter()
+  maven {
+    name "lightbend-maven-releases"
+    url "https://repo.lightbend.com/lightbend/maven-release"
+  }
+  ivy {
+    name "lightbend-ivy-release"
+    url "https://repo.lightbend.com/lightbend/ivy-releases"
+    layout "ivy"
+  }
+}
+
+try {
+  subprojects {
+    project.repositories.addAll(rootProject.repositories)
+  }
+} catch (Throwable t) {
+  //nothing
+}
