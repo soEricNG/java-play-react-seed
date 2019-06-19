@@ -17,6 +17,15 @@ function getDate(cb) {
     .then(cb);
 }
 
+function getDesserts(cb) {
+    return fetch('/api/desserts', {
+        accept: "application/json"
+    })
+        .then(checkStatus)
+        .then(parseJSON)
+        .then(cb);
+}
+
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
@@ -32,5 +41,5 @@ function parseJSON(response) {
   return response.json();
 }
 
-const Client = { getSummary, getDate};
+const Client = { getSummary, getDate, getDesserts};
 export default Client;

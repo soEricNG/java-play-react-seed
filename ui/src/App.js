@@ -50,9 +50,9 @@ class App extends Component {
                         <a href="java">
                             <img width="400" height="400" src={javaLogo} alt="Java Logo"/>
                         </a>
-                        <Link to="play">
+                        <a href="play">
                             <img width="400" height="400" src={playLogo} alt="Play Framework Logo"/>
-                        </Link>
+                        </a>
                         <Link to="react">
                             <img width="400" height="400" src={reactLogo} className="App-logo" alt="React Logo"/>
                         </Link>

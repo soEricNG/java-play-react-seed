@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Game from "./Game";
+import EnhancedTable from "./Table";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 function NoMatch({ location }) {
@@ -22,6 +23,7 @@ ReactDOM.render(
         <Switch>
             <Route exact path='/' component={App} />
             <Route path='/java' component={Game} />
+            <Route path='/play' component={EnhancedTable} />
             <Route component={NoMatch}/>
         </Switch>
     </div>
