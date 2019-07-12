@@ -18,10 +18,16 @@
         "react-dom": "^16.8.5",
         "react-router-dom": "^4.3.1",
         "react-scripts": "^3.0.1",
+        "react-native": "^0.60.3",
+        "react-native-hyperlink": "^0.0.14",
+        "react-native-web": "^0.11.5",
+        "react-art": "^16.8.6",
+        "react-router-native": "^5.0.1",
         "clsx": "latest"
     },
     "devDependencies": {
         "ncp": "^2.0.0",
+        "react-native": "^0.60.3",
         "rimraf": "^2.6.2"
     },
     "browserslist": [

@@ -7,7 +7,6 @@ import reactLogo from './images/react.svg';
 import playLogo from './images/play.svg';
 import javaLogo from './images/java.webp';
 import Client from "./Client";
-import Game from './Game';
 
 import './App.css';
 
@@ -22,12 +21,6 @@ class App extends Component {
     }
 
     componentDidMount() {
-        Client.getSummary(summary => {
-            this.setState({
-                title: summary.content,
-            });
-        });
-
         this.timerID = setInterval(
             () => Client.getDate(summary => {
                 this.setState({
@@ -45,29 +38,18 @@ class App extends Component {
     render() {
         return (<Router>
                 <div className="App">
-                    <h1>Welcome to {this.state.title} on {this.state.date}!</h1>
+                    <h1>Welcome to GaaS Integration Service Console on {this.state.date}!</h1>
                     <nav>
-                        <a href="java">
+                        <a href="/java">
                             <img width="400" height="400" src={javaLogo} alt="Java Logo"/>
                         </a>
-                        <a href="play">
+                        <a href="/play">
                             <img width="400" height="400" src={playLogo} alt="Play Framework Logo"/>
                         </a>
-                        <Link to="react">
+                        <a href="react">
                             <img width="400" height="400" src={reactLogo} className="App-logo" alt="React Logo"/>
-                        </Link>
+                        </a>
                     </nav>
-                    {/*<Route path="/java" component={Game}/>*/}
-                    {/*<Route path="/:technology" component={Tech} />*/}
-                    <div>
-                        <h2>Check out the project on GitHub for more information</h2>
-                        <h3>
-                            <a target="_blank" rel="noopener noreferrer"
-                               href="https://github.com/yohangz/java-play-react-seed">
-                                java-play-react-seed
-                            </a>
-                        </h3>
-                    </div>
                 </div>
             </Router>);
     }

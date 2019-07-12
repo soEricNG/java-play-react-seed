@@ -3,7 +3,7 @@
 # ~~~~
 
 # Serve index page from public directory
-GET     /                           controllers.FrontendController.index()
+GET     /                           controllers.Assets.at(path="/public", file="index.html")
 
 # An example route (Prefix all API routes with apiPrefix defined in application.conf)
 GET     /api/summary                controllers.HomeController.appSummary
@@ -11,4 +11,4 @@ GET     /api/date                   controllers.HomeController.date
 GET     /api/desserts               controllers.HomeController.desserts
 
 # Serve static assets under public directory
-GET     /*file                      controllers.FrontendController.assetOrDefault(file)
+GET     /*file                      controllers.Assets.at(path="/public", file)

@@ -13,9 +13,6 @@ import javax.inject.*;
 //import models.Product;
 import models.Dessert;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
-
 
 class AppSummary {
   private String content;

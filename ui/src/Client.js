@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 function getSummary(cb) {
-  return fetch('/api/summary', {
+  return fetch('/gaas-isc/api/summary', {
     accept: "application/json"
   })
     .then(checkStatus)
@@ -9,7 +9,7 @@ function getSummary(cb) {
 }
 
 function getDate(cb) {
-  return fetch('/api/date', {
+  return fetch('/gaas-isc/api/date', {
     accept: "application/json"
   })
     .then(checkStatus)
@@ -18,7 +18,37 @@ function getDate(cb) {
 }
 
 function getDesserts(cb) {
-    return fetch('/api/desserts', {
+    return fetch('/gaas-isc/api/desserts', {
+        accept: "application/json"
+    })
+        .then(checkStatus)
+        .then(parseJSON)
+        .then(cb);
+}
+
+function getFlowStatuses(cb) {
+    return fetch('/gaas-isc/api/getRecentExecutions', {
+        accept: "application/json"
+    })
+        .then(checkStatus)
+        .then(parseJSON)
+        .then(cb);
+}
+
+function getSpecificFlowStatuses(cb, flowGroup, flowName) {
+    const url = `/gaas-isc/api/getFlowRecentExecutions/${flowGroup}/${flowName}`;
+    console.log(url);
+    return fetch(url, {
+        accept: "application/json"
+    })
+        .then(checkStatus)
+        .then(parseJSON)
+        .then(cb);
+}
+
+function getJobStatuses(cb, flowGroup, flowName, flowExecId) {
+    const url = `/gaas-isc/api/getFlowJobDetails/${flowGroup}/${flowName}/${flowExecId}`;
+    return fetch(url, {
         accept: "application/json"
     })
         .then(checkStatus)
@@ -41,5 +71,5 @@ function parseJSON(response) {
   return response.json();
 }
 
-const Client = { getSummary, getDate, getDesserts};
+const Client = { getSummary, getDate, getDesserts, getFlowStatuses, getSpecificFlowStatuses, getJobStatuses};
 export default Client;
