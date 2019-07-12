@@ -154,7 +154,7 @@ const EnhancedTableToolbar = props => {
             <div className={classes.title}>
                 {(
                     <Typography variant="h6" id="tableTitle">
-                        GaaS Monitoring
+                        <b>GaaS Monitoring </b>
                     </Typography>
                 )}
             </div>

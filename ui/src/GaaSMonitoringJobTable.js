@@ -150,20 +150,20 @@ const EnhancedTableToolbar = props => {
             <div className={classes.title}>
                 {(
                     <Typography variant="h6" id="tableTitle">
-                        Job details for {flowGroup} {flowName} {flowExecId}
+                        <b>Job details: </b> {flowGroup}(flowGroup) {flowName}(flowName) {flowExecId}(flowExecutionID)
                     </Typography>
                 )}
             </div>
             <div className={classes.spacer} />
-            <div className={classes.actions}>
-                {(
-                    <Tooltip title="Filter list">
-                        <IconButton aria-label="Filter list">
-                            <FilterListIcon />
-                        </IconButton>
-                    </Tooltip>
-                )}
-            </div>
+            {/*<div className={classes.actions}>*/}
+            {/*    {(*/}
+            {/*        <Tooltip title="Filter list">*/}
+            {/*            <IconButton aria-label="Filter list">*/}
+            {/*                <FilterListIcon />*/}
+            {/*            </IconButton>*/}
+            {/*        </Tooltip>*/}
+            {/*    )}*/}
+            {/*</div>*/}
         </Toolbar>
     );
 };
